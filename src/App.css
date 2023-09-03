@@ -1,113 +1,275 @@
 .app {
   height: 100vh;
   display: flex;
-  background-color: #020230;
   color: #fff;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0), #020230),
+    url("./assets/bg.jpg") center;
 }
 
 .main {
   width: 75%;
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0), #020230),
-    url("./assets/bg.jpg") center;
+  position: relative;
   display: flex;
   flex-direction: column;
+  justify-content: end;
+  padding-bottom: 2rem;
 }
 
-.top{
-  height: 50%;
+.top {
+  position: absolute;
+  left: 5%;
+  top: 10%;
+}
+
+.userName {
+  min-width: 300px;
+  color: gold;
+  padding: 1rem 2rem;
+  background: linear-gradient(#012870, #00153b);
+  opacity: 0.8;
+  border-radius: 15px;
+  box-shadow: inset 0 0 15px 10px #00091a, 0 0 10px 5px gold;
+  font-size: 2rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.bottom {
   position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.timer{
-  width: 70px;
-  height: 70px;
-  border-radius: 50%;
-  border: 5px solid #fff;
+.timer {
+  width: 60%;
+  height: 5px;
+  border-radius: 10px;
+  border: 3px solid #7f7d67;
+}
+
+.rotation {
+  --rotation: 0;
+  background: red;
+  width: calc(var(--rotation));
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+.stepMoney {
+  margin-bottom: 5rem;
+  width: 100%;
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 30px;
-  font-weight: 700;
-  position: absolute;
-  left: 5rem;
-  bottom: 1rem;
 }
 
-.bottom{
-  height: 50%;
+.stepMoney .textDiv {
+  height: 6rem;
+}
+.stepMoney .textDiv div {
+  font-size: 2rem;
+  font-weight: 600;
 }
 
-.trivia{
+.containerTrivia {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.d-none {
+  display: none;
+}
+
+.trivia {
   height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-around;
-}
-
-.question{
-  width: 80%;
-  background: linear-gradient(#100214, black);
-  border: 2px solid #fff;
-  text-align: center;
-  padding: 20px;
-  border-radius: 20px;
-}
-
-.answers{
+  justify-content: start;
   width: 100%;
+}
+
+.lineQuestion {
+  width: 100%;
+  position: relative;
   display: flex;
+  align-items: center;
   justify-content: center;
-  flex-wrap: wrap;
-  gap: 0.5rem;
+}
+
+.lineCenterQuestion {
+  width: 100%;
+  height: 3px;
+  background-color: #7f7d67;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.questionBorder {
+  width: 90%;
+  background: #7f7d67;
+  padding: 3px;
+  clip-path: polygon(10% 50%, 15% 85%, 85% 85%, 90% 50%, 85% 15%, 15% 15%);
+}
+
+.textDiv {
+  background: linear-gradient(#012870, #00153b);
+  padding: 0 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  clip-path: polygon(11% 50%, 15% 85%, 85% 85%, 89% 50%, 85% 15%, 15% 15%);
+}
+
+.question {
+  padding: 1.5rem 15%;
+}
+
+.answers {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 50% 50%;
+}
+
+.answer {
+  width: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.answer:nth-child(even) {
+  justify-content: start;
+}
+
+.answer:nth-child(odd) {
+  justify-content: end;
+}
+
+.answer .hexagonBorder {
+  width: 70%;
+  padding: 3px;
+  text-align: center;
+  background: #7f7d67;
+  font-size: 0.8rem;
+  font-weight: 300;
+  clip-path: polygon(0% 50%, 15% 85%, 85% 85%, 100% 50%, 85% 15%, 15% 15%);
+  z-index: 1;
+  position: relative;
+}
+
+.answer:nth-child(1) .hexagon::after {
+  content: "A:";
+  font-size: 1.1rem;
+  width: 1rem;
+  color: #e9aa0c;
+  position: absolute;
+  left: 20%;
+}
+.answer:nth-child(2) .hexagon::after {
+  content: "B:";
+  font-size: 1.1rem;
+  width: 1rem;
+  color: #e9aa0c;
+  position: absolute;
+  left: 20%;
+}
+.answer:nth-child(3) .hexagon::after {
+  content: "C:";
+  font-size: 1.1rem;
+  width: 1rem;
+  color: #e9aa0c;
+  position: absolute;
+  left: 20%;
+}
+.answer:nth-child(4) .hexagon::after {
+  content: "D:";
+  font-size: 1.1rem;
+  width: 1rem;
+  color: #e9aa0c;
+  position: absolute;
+  left: 20%;
+}
+
+.answerLine {
+  width: 100%;
+  height: 3px;
+  background-color: #7f7d67;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.hexagon {
+  background: linear-gradient(#012870, #00153b);
+  clip-path: polygon(3% 50%, 14% 85%, 86% 85%, 97% 50%, 86% 15%, 15% 15%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 0;
+}
+
+.answer .hexagon:hover,
+.answer .hexagon.active {
+  background: linear-gradient(#ff9000, #754301);
   cursor: pointer;
 }
 
-.answer{
-  width: 40%;
-  padding: 10px;
-  text-align: center;
-  background: linear-gradient(#0e0124, #22074d);
-  border: 1px solid #fff;
-  border-radius: 10px;
-  font-size: 20px;
-  font-weight: 300;
+.iconDiamond{
+  position: absolute;
+  left: 15%;
 }
 
-.answer:hover, 
-.answer.active {
-  background: mediumblue;
-}
-
-.answer.correct {
+.hexagon.correct {
   animation: correct 3s ease forwards;
 }
-
 @keyframes correct {
-  0%, 22%, 42% {
-    background: mediumblue;
+  0%,
+  22%,
+  42% {
+    background: linear-gradient(#ff9000, #754301);
   }
-  20%, 40%, 60% {
-    background: linear-gradient(#0e0124, #22074d);
+  20%,
+  40%,
+  60% {
+    background: linear-gradient(#012870, #00153b);
   }
-  62%, 100% {
+  62%,
+  100% {
     background: green;
   }
 }
-.answer.wrong {
+
+.hexagon.wrong {
   animation: wrong 3s ease forwards;
 }
-
 @keyframes wrong {
-  0%, 22%, 42% {
-    background: mediumblue;
+  0%,
+  22%,
+  42% {
+    background: linear-gradient(#ff9000, #754301);
   }
-  20%, 40%, 60% {
-    background: linear-gradient(#0e0124, #22074d);
+  20%,
+  40%,
+  60% {
+    background: linear-gradient(#012870, #00153b);
   }
-  62%, 100% {
+  62%,
+  100% {
     background: crimson;
   }
+}
+
+.hexagon.green {
+  background: green;
 }
 
 .pyramid {
@@ -115,41 +277,117 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  opacity: 0.8;
+  backdrop-filter: blur(20px);
 }
 
-.moneyList{
-    list-style: none;
-    width: 100%;
-    padding: 20px;
+.moneyList {
+  list-style: none;
+  width: 100%;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .moneyListItem {
-    display: flex;
-    align-items: center;
-    padding: 5px;
-    border-radius: 5px;
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  color: #e9aa0c;
+  width: 75%;
 }
 
-.moneyListItem.active {
-    background-color: teal;
+.moneyListItem:nth-child(1),
+.moneyListItem:nth-child(6),
+.moneyListItem:nth-child(11) {
+  color: #fff;
+}
+
+.moneyBorder {
+  height: 100%;
+  width: 100%;
+  background: none;
+  display: flex;
+  align-items: center;
+  margin: 0px;
+  justify-content: center;
+}
+
+.resp {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .moneyListItemNumber {
-    font-size: 1.1rem;
-    font-weight: 100;
-    width: 30%;
+  font-size: 1rem;
+  width: 25%;
+  text-align: end;
+}
+
+.iconSpan {
+  width: 15%;
+  font-size: 1.1rem;
+  text-align: center;
 }
 
 .moneyListItemAmount {
-    font-size: 1.2rem;
-    font-weight: 300;
+  font-size: 1rem;
+  width: 60%;
+  text-align: left;
 }
 
-.endText {
+.moneyListItem.active {
+  background: #7f7d67;
+  padding: 3px;
+  height: 3rem;
+  clip-path: polygon(8% 50%, 15% 85%, 85% 85%, 92% 50%, 85% 15%, 15% 15%);
+}
+
+.moneyBorder.active {
+  background: linear-gradient(#ff9000, #754301);
+  color: #fff;
+  clip-path: polygon(10% 50%, 15% 85%, 85% 85%, 90% 50%, 85% 15%, 15% 15%);
+}
+
+.start {
+  width: 250px;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
   position: relative;
   top: 0;
   left: 0;
-  bottom: 0;
   right: 0;
+  bottom: 0;
   margin: auto;
+}
+
+.startInput {
+  width: 100%;
+  height: 2rem;
+  border: none;
+  border-radius: 5px;
+  text-align: center;
+  font-size: 1.1rem;
+}
+.startInput:focus {
+  outline: none;
+}
+.startButton {
+  width: 100%;
+  height: 2rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+.startButton:hover {
+  color: red;
 }

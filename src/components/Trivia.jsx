@@ -3,16 +3,20 @@ import useSound from "use-sound";
 import play from "../sounds/play.mp3";
 import correct from "../sounds/correct.mp3";
 import wrong from "../sounds/wrong.mp3";
+import { GiDiamonds } from "react-icons/gi";
 
 export default function Trivia({
-  data,
   setStop,
   questionNumber,
   setQuestionNumber,
+  easyDataArray,
+  mediumDataArray,
+  hardDataArray,
+  setChooseVariant,
 }) {
   const [question, setQuestion] = useState(null);
   const [selectAnswer, setSelectAnswer] = useState(null);
-  const [className, setClassName] = useState("answer");
+  const [className, setClassName] = useState("hexagon");
   const [letsPlay] = useSound(play);
   const [correctAnswer] = useSound(correct);
   const [wrongAnswer] = useSound(wrong);
@@ -22,8 +26,16 @@ export default function Trivia({
   }, [letsPlay]);
 
   useEffect(() => {
-    setQuestion(data[questionNumber - 1]);
-  }, [data, questionNumber]);
+    if (questionNumber < 6) {
+      setQuestion(easyDataArray[questionNumber - 1]);
+    } else if (questionNumber >= 6 && questionNumber < 11) {
+      setQuestion(mediumDataArray[questionNumber - 6]);
+    } else if (questionNumber >= 11 && questionNumber < 16) {
+      setQuestion(hardDataArray[questionNumber - 11]);
+    } else {
+      setStop(true);
+    }
+  }, [easyDataArray, mediumDataArray, hardDataArray, questionNumber]);
 
   const delay = (duration, callback) => {
     setTimeout(() => {
@@ -33,52 +45,86 @@ export default function Trivia({
 
   const handleClick = (a) => {
     setSelectAnswer(a);
-    setClassName("answer active");
+    setClassName("hexagon active");
+    setChooseVariant(true);
     delay(3000, () => {
-      setClassName(a.correct ? "answer correct" : "answer wrong");
+      setClassName(a.correct ? "hexagon correct" : "hexagon wrong");
     });
     delay(5000, () => {
       if (a.correct) {
         correctAnswer();
-        delay(1000, () => {
-          setQuestionNumber((prev) => prev + 1);
-          setSelectAnswer(null);
+        delay(2000, () => {
+          document.querySelector(".stepMoney").classList.remove("d-none");
+          document.querySelector(".containerTrivia").classList.add("d-none");          
         });
+        delay(4000, () => {
+          document.querySelector(".stepMoney").classList.add("d-none");
+          document.querySelector(".containerTrivia").classList.remove("d-none");          
+          if(questionNumber < 15){
+            setQuestionNumber((prev) => prev + 1);
+          } else {
+            setQuestionNumber(15);
+            document.querySelector(".stepMoney").classList.remove("d-none");
+            document.querySelector(".containerTrivia").classList.add("d-none");
+          }
+          setSelectAnswer(null);  
+        });
+                  
       } else {
         wrongAnswer();
+        
         delay(1000, () => {
+          document.querySelector(".hexagon.true").classList.add("green");
           setStop(true);
+        });
+        delay(5000, () => {
+          document.querySelector(".stepMoney").classList.remove("d-none");
+          document.querySelector(".containerTrivia").classList.add("d-none");
         });
       }
     });
   };
 
-  // async function randomQuestion() {
-  //     const response = await fetch('https://opentdb.com/api.php?amount=50&difficulty=easy&type=multiple');
-  //     const data = await response.json();
-
-  //     renderQuestion(data);
-  //   }
-
-  //   function renderQuestion(data) {
-  //     const randomData = Math.floor(Math.random() * 50);
-  //     const html = `${data.results[randomData].question}`
-  //     console.log(html);
-  // }
-
   return (
-    <div className="trivia">
-      <div className="question">{question?.question}</div>
-      <div className="answers">
-        {question?.answers.map((a) => (
-          <div
-            className={selectAnswer === a ? className : "answer"}
-            onClick={() => handleClick(a)}
-          >
-            {a.text}
-          </div>
-        ))}
+    <>
+      <div>
+        A: <span dangerouslySetInnerHTML={{ __html: question?.answers[0].correct }}></span>{" | "}
+        B: <span dangerouslySetInnerHTML={{ __html: question?.answers[1].correct }}></span>{" | "}
+        C: <span dangerouslySetInnerHTML={{ __html: question?.answers[2].correct }}></span>{" | "}
+        D: <span dangerouslySetInnerHTML={{ __html: question?.answers[3].correct }}></span>
       </div>
-    </div>
+      <div className="trivia">
+        <div className="lineQuestion">
+          <div className="lineCenterQuestion"></div>
+          <div className="questionBorder">
+            <div className="textDiv">
+              <div
+                className="question"
+                dangerouslySetInnerHTML={{ __html: question?.question }}
+              ></div>
+            </div>
+          </div>
+        </div>
+
+        <div className="answers">
+          {question?.answers.map((a) => (
+            <div key={a.id} className="answer">
+              <div className="hexagonBorder">
+                <div
+                  className={
+                    selectAnswer === a ? className : `hexagon ${a.correct}`
+                  }
+                  onClick={() => handleClick(a)}
+                >
+                  <span className="iconDiamond"><GiDiamonds /></span>
+                  <p dangerouslySetInnerHTML={{ __html: a.text }}></p>
+                </div>
+              </div>
+              <div className="answerLine"></div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </>
   );
 }
