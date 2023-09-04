@@ -29,7 +29,7 @@ export default function Timer({
       }, 1000);
       return () => clearInterval(interval);
     }
-  }, [setStop, timer]);
+  }, [setStop, timer, chooseVariant, setTimer]);
   useEffect(() => {
     if (questionNumber <= 5) {
       setChooseVariant(false);
@@ -42,6 +42,6 @@ export default function Timer({
     } else {
       setChooseVariant(true);
     }
-  }, [questionNumber]);
+  }, [questionNumber, setChooseVariant, setTimer, setTimerPercent]);
   return timer;
 }

@@ -35,7 +35,7 @@ export default function Trivia({
     } else {
       setStop(true);
     }
-  }, [easyDataArray, mediumDataArray, hardDataArray, questionNumber]);
+  }, [easyDataArray, mediumDataArray, hardDataArray, questionNumber, setStop]);
 
   const delay = (duration, callback) => {
     setTimeout(() => {
