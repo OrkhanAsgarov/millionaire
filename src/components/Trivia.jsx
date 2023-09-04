@@ -55,24 +55,23 @@ export default function Trivia({
         correctAnswer();
         delay(2000, () => {
           document.querySelector(".stepMoney").classList.remove("d-none");
-          document.querySelector(".containerTrivia").classList.add("d-none");          
+          document.querySelector(".containerTrivia").classList.add("d-none");
         });
         delay(4000, () => {
           document.querySelector(".stepMoney").classList.add("d-none");
-          document.querySelector(".containerTrivia").classList.remove("d-none");          
-          if(questionNumber < 15){
+          document.querySelector(".containerTrivia").classList.remove("d-none");
+          if (questionNumber < 15) {
             setQuestionNumber((prev) => prev + 1);
           } else {
             setQuestionNumber(15);
             document.querySelector(".stepMoney").classList.remove("d-none");
             document.querySelector(".containerTrivia").classList.add("d-none");
           }
-          setSelectAnswer(null);  
+          setSelectAnswer(null);
         });
-                  
       } else {
         wrongAnswer();
-        
+
         delay(1000, () => {
           document.querySelector(".hexagon.true").classList.add("green");
           setStop(true);
@@ -83,34 +82,42 @@ export default function Trivia({
         });
       }
     });
-    if(questionNumber === 5 || questionNumber === 10){
- 
-      delay(8000, ()=> {
+    if (questionNumber === 5 || questionNumber === 10) {
+      delay(8000, () => {
         document.querySelector(".app").classList.add("addPyramid");
         document.querySelector(".pyramid").classList.add("d-flex");
         document.querySelector(".bottom").classList.add("d-none");
-        delay(4000, ()=> {
+        delay(4000, () => {
           document.querySelector(".app").classList.remove("addPyramid");
           document.querySelector(".pyramid").classList.remove("d-flex");
           document.querySelector(".bottom").classList.remove("d-none");
-        })
-      })
-      
-      
-    } 
-
-        
-
-   
+        });
+      });
+    }
   };
 
   return (
     <>
       <div>
-        A: <span dangerouslySetInnerHTML={{ __html: question?.answers[0].correct }}></span>{" | "}
-        B: <span dangerouslySetInnerHTML={{ __html: question?.answers[1].correct }}></span>{" | "}
-        C: <span dangerouslySetInnerHTML={{ __html: question?.answers[2].correct }}></span>{" | "}
-        D: <span dangerouslySetInnerHTML={{ __html: question?.answers[3].correct }}></span>
+        A:{" "}
+        <span
+          dangerouslySetInnerHTML={{ __html: question?.answers[0].correct }}
+        ></span>
+        {" | "}
+        B:{" "}
+        <span
+          dangerouslySetInnerHTML={{ __html: question?.answers[1].correct }}
+        ></span>
+        {" | "}
+        C:{" "}
+        <span
+          dangerouslySetInnerHTML={{ __html: question?.answers[2].correct }}
+        ></span>
+        {" | "}
+        D:{" "}
+        <span
+          dangerouslySetInnerHTML={{ __html: question?.answers[3].correct }}
+        ></span>
       </div>
       <div className="trivia">
         <div className="lineQuestion">
@@ -135,7 +142,9 @@ export default function Trivia({
                   }
                   onClick={() => handleClick(a)}
                 >
-                  <span className="iconDiamond"><GiDiamonds /></span>
+                  <span className="iconDiamond">
+                    <GiDiamonds />
+                  </span>
                   <p dangerouslySetInnerHTML={{ __html: a.text }}></p>
                 </div>
               </div>
