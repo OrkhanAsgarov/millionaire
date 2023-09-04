@@ -7,7 +7,7 @@ import { GiDiamonds } from "react-icons/gi";
 
 function App() {
   const [userName, setUserName] = useState(null);
-  const [questionNumber, setQuestionNumber] = useState(1);
+  const [questionNumber, setQuestionNumber] = useState(4);
   const [stop, setStop] = useState(false);
   const [chooseVariant, setChooseVariant] = useState(false);
   const [earned, setEarned] = useState("$ 0");
@@ -98,7 +98,7 @@ function App() {
               <div className="top">
                 <div className="userName">{userName} </div>
               </div>
-              <div className="bottom">
+              <div className="bottom ">
                 <div className="stepMoney d-none">
                   <div className="lineCenterQuestion"></div>
                   <div className="questionBorder">

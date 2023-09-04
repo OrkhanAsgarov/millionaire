@@ -41,7 +41,6 @@ export default function Start({
         ],
       };
     });
-
     easyQuestionsArr.map((e)=>{
       return {
         question: `${e.question}`,

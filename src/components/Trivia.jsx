@@ -83,6 +83,25 @@ export default function Trivia({
         });
       }
     });
+    if(questionNumber === 5 || questionNumber === 10){
+ 
+      delay(8000, ()=> {
+        document.querySelector(".app").classList.add("addPyramid");
+        document.querySelector(".pyramid").classList.add("d-flex");
+        document.querySelector(".bottom").classList.add("d-none");
+        delay(4000, ()=> {
+          document.querySelector(".app").classList.remove("addPyramid");
+          document.querySelector(".pyramid").classList.remove("d-flex");
+          document.querySelector(".bottom").classList.remove("d-none");
+        })
+      })
+      
+      
+    } 
+
+        
+
+   
   };
 
   return (
