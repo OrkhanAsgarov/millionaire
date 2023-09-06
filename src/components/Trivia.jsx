@@ -98,27 +98,6 @@ export default function Trivia({
 
   return (
     <>
-      <div>
-        A:{" "}
-        <span
-          dangerouslySetInnerHTML={{ __html: question?.answers[0].correct }}
-        ></span>
-        {" | "}
-        B:{" "}
-        <span
-          dangerouslySetInnerHTML={{ __html: question?.answers[1].correct }}
-        ></span>
-        {" | "}
-        C:{" "}
-        <span
-          dangerouslySetInnerHTML={{ __html: question?.answers[2].correct }}
-        ></span>
-        {" | "}
-        D:{" "}
-        <span
-          dangerouslySetInnerHTML={{ __html: question?.answers[3].correct }}
-        ></span>
-      </div>
       <div className="trivia">
         <div className="lineQuestion">
           <div className="lineCenterQuestion"></div>
